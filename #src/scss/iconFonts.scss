@@ -1,0 +1,122 @@
+// @font-face {
+//   font-family: 'iconfont';
+//   src:  url('../fonts/iconfont.eot');
+//   src:  url('../fonts/fontsIcon/iconfont.eot') format('embedded-opentype'),
+//     url('../fonts/fontsIcon/iconfont.ttf') format('truetype'),
+//     url('../fonts/fontsIcon/iconfont.woff') format('woff'),
+//     url('../fonts/fontsIcon/iconfont.svg') format('svg');
+//   font-weight: normal;
+//   font-style: normal;
+//   font-display: block;
+// }
+
+i {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'iconfont' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon_addpay:before {
+  content: "\e900";
+  color: #41c59f;
+}
+.icon_arrowActive:before {
+  content: "\e901";
+}
+.icon_arrowDefault:before {
+  content: "\e902";
+}
+.icon_car:before {
+  content: "\e903";
+  color: #41c59f;
+}
+.icon_cart:before {
+  content: "\e904";
+  color: #41c59f;
+}
+.icon_check:before {
+  content: "\e905";
+  color: #41c59f;
+}
+.icon_closeBublemob:before {
+  content: "\e906";
+}
+.icon_closeMenuMob:before {
+  content: "\e907";
+}
+.icon_closeMenuTablet:before {
+  content: "\e908";
+}
+.icon_creditcards:before {
+  content: "\e909";
+  color: #41c59f;
+}
+.icon_deleteItem:before {
+  content: "\e90a";
+}
+.icon_delivery:before {
+  content: "\e90b";
+  color: #41c59f;
+}
+.icon_deliveryTransport:before {
+  content: "\e90c";
+  color: #41c59f;
+}
+.icon_facebook:before {
+  content: "\e90d";
+}
+.icon_hands:before {
+  content: "\e90e";
+  color: #41c59f;
+}
+.icon_headphones:before {
+  content: "\e90f";
+  color: #41c59f;
+}
+.icon_search:before {
+  content: "\e910";
+  color: #41c59f;
+}
+.icon_stanok:before {
+  content: "\e911";
+  color: #41c59f;
+}
+.icon_water:before {
+  content: "\e912";
+  color: #41c59f;
+}
+.icon_inst:before {
+  content: "\e913";
+}
+.icon_locations:before {
+  content: "\e914";
+  color: #41c59f;
+}
+.icon_phone:before {
+  content: "\e915";
+  color: #41c59f;
+}
+.icon_settings:before {
+  content: "\e916";
+  color: #41c59f;
+}
+.icon_share:before {
+  content: "\e917";
+  color: #adadaf;
+}
+.icon_starNoactive:before {
+  content: "\e918";
+  color: #d8d8d8;
+}
+.icon_telegram:before {
+  content: "\e919";
+}

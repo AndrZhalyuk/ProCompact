@@ -1,0 +1,187 @@
+@import "zeroing.scss";
+
+@import "colors.scss";
+
+@import "mixins.scss";
+
+@import "fonts.scss";
+@import "iconFonts.scss";
+
+$ff_extraBold: "MontserratExtraBold";
+$ff_semiBold: "MontserratSemiBold";
+$ff_medium: "MontserratMedium";
+$ff_light: "MontserratLight";
+
+.btn{
+    @extend %d-flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 20px;          
+    font-family: $ff_semiBold; 
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    height: 36px;
+    color: $colorText_white;   
+}
+.btn-black{
+    max-width: 90px;
+    padding-right: 35px;
+    padding-left: 35px;
+    background-color: $colorBgc_black; 
+    border: 2px solid $colorBgc_black;       
+    &:hover{
+        color: $colorBgc_black;
+        background-color: $colorBgc_white;
+    }
+}
+.btn-green{
+    font-size: 11px;
+    text-transform: uppercase;
+    padding-right: 20px;
+    padding-left: 20px;
+    background-color: $colorBgc_green;
+    &:hover{
+        background-color: $colorBgc_greenHover;
+    }
+}
+.btn-big{
+    height: 40px;
+    font-size: 12px;
+    &.btn-green{
+        padding-right: 35px;
+        padding-left: 35px;
+    }
+    &.btn-black{
+        padding-right: 42px;
+        padding-left: 39px;
+        max-width: 250px;
+    }
+}
+
+.content-main{
+    max-width: 405px;
+    text-align: left;
+    h5{
+        margin-bottom: 30px;
+        text-transform: uppercase;
+        opacity: 0.7;
+    }
+    h1{
+        margin-bottom: 30px;
+    }
+    p{
+        margin-bottom: 30px;
+    }
+}
+
+i{
+    font-size: 30px;
+}
+
+*{
+    font-family: $ff_semiBold;
+    letter-spacing: 0;
+    h1{
+       font-family: $ff_semiBold; 
+       font-size: 30px; 
+       line-height: 40px;             
+    }
+    h2{
+        font-family: $ff_semiBold;
+        font-size: 18px;
+        line-height: 30px;
+    }
+    h3{
+        font-family: $ff_semiBold;
+        font-size: 15px;
+        line-height: 25px;
+    }
+    h4{
+        font-family: $ff_medium;
+        font-size: 15px; 
+        line-height: 25px;       
+    }
+    h5{
+        font-family: $ff_extraBold;
+        font-family: 13px;
+        line-height: 18px;
+    }
+    h6{
+        font-family: $ff_semiBold;
+        font-size: 13px;
+        letter-spacing: 1px;
+        line-height: 16px;
+    }
+    p{
+        font-family: $ff_light;
+        font-size: 15px;
+        line-height: 22px;
+    } 
+    a{
+        color: $colorText_black;
+    }
+}
+
+.container{
+    max-width: 1180px;
+    margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    position: relative;   
+}
+.row{    
+    margin: 0 -15px;  
+}
+@import "_header.scss";
+@import "_sliderProduct.scss";
+@import "_productSale.scss";
+@import "_printClothes.scss";
+@import "_cooperation.scss";
+@import "_footer.scss";
+
+@media only screen and(max-width: 992px){
+    h1{         
+        font-size: 26px; 
+        line-height: 36px;             
+     } 
+     .content-main{
+         padding: 10px;
+     }
+}
+@media only screen and (max-width: 576px) {
+    .container{
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .content-main {
+        text-align: left;
+        max-width: 100%;
+        .btn-black {            
+            max-width: 100%;
+        }
+    }
+    h1{
+        font-size: 20px;
+        line-height: 30px;        
+    }
+    h2{
+        font-size: 15px;
+        line-height: 22px;
+    }
+    h5{
+        font-size: 12px;
+        letter-spacing: 0.5px;
+        line-height: 16px;
+    }
+    h6{
+        font-size: 12px;
+        letter-spacing: 0.5px;        
+    }
+    p{
+        font-size: 13px;
+        line-height: 20px;
+    }
+}

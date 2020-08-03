@@ -1,0 +1,184 @@
+
+.product-sale{
+    padding-top: 40px;
+    padding-bottom: 40px;
+    .title{
+        margin-bottom: 40px;
+    }
+    &__item{
+        @extend %d-flex;
+        flex-direction: column;
+        justify-content: space-between;
+        
+        position: relative;
+        &:before{
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;            
+            height: 21px;
+            letter-spacing: 1px;
+            font-family: $ff_semiBold;
+            font-size: 12px;   
+                   
+         }
+        &.new-sale{
+            &:before{
+                content: 'NEW';
+                background-color: $colorBgc_lime;    
+                color: $colorBgc_white; 
+            }
+        }
+        &.sale{
+            &:before{
+                content: 'SALE';
+                background-color: $colorBgc_red;    
+                color: $colorBgc_white; 
+            }
+        }
+        &.order{
+            h4{
+                color: $colorBgc_gold;
+            }
+            .purchase{
+                justify-content: center;
+                a{
+                    width: 100%;
+                }
+            }
+        }
+        &.notAvaliable{
+            h4{
+                color: $colorBgc_red;
+            }
+        }     
+        
+    }
+    &__wrap{
+        margin-right: -15px;
+        margin-left: -15px;
+        position: relative;
+        .slick-arrow{
+            position: absolute;
+            top: -10%;                       
+            z-index: 10;
+            font-size: 0;   
+            background-color: transparent; 
+            cursor: pointer;    
+            &.slick-prev{
+                right: 130px;            
+                &:before{
+                    content: "\e902";
+                    font-family:'iconfont';
+                    font-size: 30px;
+                    opacity: 0.5;
+                }         
+                
+            }
+            &.slick-next{
+                right: 80px;
+                &:before{
+                    content: "\e901";
+                    font-family:'iconfont';
+                    font-size: 30px;
+                }  
+            }
+        }
+    }
+    &__item{
+        text-align: center;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        border-top: 1px solid $colorLine_grey;
+        border-bottom: 1px solid $colorLine_grey;
+        margin-right: 15px;
+        margin-left: 15px;
+        h6{
+            margin-bottom: 10px;
+            line-height: 22px;
+            opacity: 70%;
+            text-transform: uppercase;
+        }
+        h3{
+            margin-bottom: 10px;
+        }
+        h4{
+            color: $colorText_lime;
+            margin-bottom: 10px;
+        }
+        .image{
+            margin-bottom: 10px;
+            height: 262px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .rating{
+            margin-bottom: 10px;
+            i{
+                font-size: 12px;
+                margin-right: 5px;
+                &.active{   
+                    &:before{
+                         color: $colorBgc_gold;                   
+
+                    }                
+                }
+            }
+        }
+        .description{
+            margin-bottom: 10px;
+           p{
+                font-size: 13px;
+            } 
+
+        }
+        h2{
+            margin-bottom: 30px;
+            .old-price{
+                margin-left: 5px;
+                opacity: 0.7;
+                text-decoration: line-through;
+                font-size: 16px;
+            }
+        }
+        .purchase{
+            @extend %d-flex;
+            align-items: center;
+            justify-content: space-between;          
+            span{
+                @extend %d-flex;               
+                a{
+                    
+                    background-color: $colorBgc_grey;
+                    @extend %d-flex;
+                    align-items: center;
+                    justify-content: center;
+                    &.negative{
+                        height: 36px;
+                        width: 40px;
+                        border-radius: 18px 0 0 18px;
+                    }
+                    &.current-number{
+                        height: 36px;
+                        width: 40px;
+                        margin-left: 1px;
+                        margin-right: 1px;
+                    }
+                    &.positive{
+                        height: 36px;
+                        width: 40px;
+                        border-radius: 0 18px  18px 0;
+                        
+                    }
+                }  
+            }           
+        }
+
+    }
+
+}
