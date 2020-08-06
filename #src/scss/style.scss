@@ -12,11 +12,11 @@ $ff_semiBold: "MontserratSemiBold";
 $ff_medium: "MontserratMedium";
 $ff_light: "MontserratLight";
 
-.btn{
-    @extend %d-flex;
+.btn{      
+    display: inline-flex;
     align-items: center;
     text-align: center;
-    justify-content: center;
+    justify-content: center;    
     cursor: pointer;
     border-radius: 20px;          
     font-family: $ff_semiBold; 
@@ -26,8 +26,7 @@ $ff_light: "MontserratLight";
     height: 36px;
     color: $colorText_white;   
 }
-.btn-black{
-    max-width: 90px;
+.btn-black{    
     padding-right: 35px;
     padding-left: 35px;
     background-color: $colorBgc_black; 
@@ -49,7 +48,7 @@ $ff_light: "MontserratLight";
 }
 .btn-big{
     height: 40px;
-    font-size: 12px;
+    font-size: 12px;    
     &.btn-green{
         padding-right: 35px;
         padding-left: 35px;
@@ -57,7 +56,7 @@ $ff_light: "MontserratLight";
     &.btn-black{
         padding-right: 42px;
         padding-left: 39px;
-        max-width: 250px;
+        
     }
 }
 
@@ -141,6 +140,9 @@ i{
 @import "_printClothes.scss";
 @import "_cooperation.scss";
 @import "_footer.scss";
+@import "registration.scss";
+@import "drop-down.scss";
+@import "accordeon.scss";
 
 @media only screen and(max-width: 992px){
     h1{         
@@ -151,6 +153,13 @@ i{
          padding: 10px;
      }
 }
+
+@media only screen and (max-width: 768px) {
+    .btn-big {        
+        font-size: 11px;
+    }
+}
+
 @media only screen and (max-width: 576px) {
     .container{
         padding-left: 15px;
@@ -159,8 +168,12 @@ i{
     .content-main {
         text-align: left;
         max-width: 100%;
+        padding: 0;
         .btn-black {            
             max-width: 100%;
+        }
+        h5, h1, p{
+            margin-bottom: 20px;
         }
     }
     h1{
@@ -183,5 +196,14 @@ i{
     p{
         font-size: 13px;
         line-height: 20px;
+    }
+
+}
+@media only screen and (max-width: 390px) {
+    .content-main {        
+        .btn-black {            
+            width: 100%;
+        }
+
     }
 }
