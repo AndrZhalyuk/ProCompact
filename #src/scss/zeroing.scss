@@ -47,7 +47,8 @@ html {
       border-collapse: collapse;
     }
     * {
-      outline: none;      
+      outline: none;   
+      box-sizing: border-box;   
     }
   }
   button{

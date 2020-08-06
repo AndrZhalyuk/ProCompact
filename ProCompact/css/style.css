@@ -72,6 +72,7 @@ html table {
 
 html * {
   outline: none;
+  box-sizing: border-box;
 }
 
 button {
@@ -79,7 +80,6 @@ button {
   padding: 0;
 }
 
-.btn,
 .main-menu,
 .contact,
 .contact__item,
@@ -112,7 +112,10 @@ button {
 .footer-main__social .social-networks,
 .footer-main__social .social-networks__link,
 .footer-main__social .payment-systems,
-.footer .main-menu {
+.footer .main-menu,
+.popup-registration,
+.drop-down__content,
+.drop-down__description {
   display: -moz-flex;
   display: -ms-flex;
   display: -o-flex;
@@ -155,6 +158,14 @@ button {
   font-family: "iconfont";
   font-display: swap;
   src: url("../fonts/iconfont.woff") format("woff"), url("../fonts/iconfont.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "fonticon";
+  font-display: swap;
+  src: url("../fonts/fonticon.woff") format("woff"), url("../fonts/fonticon.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
 }
@@ -294,7 +305,39 @@ i {
   content: "\e919";
 }
 
+[class^="icon-"],
+[class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'fonticon' !important;
+  display: block;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-phone:before {
+  content: "\e920";
+  color: #41c59f;
+}
+
+.icon-user {
+  background-image: url("../img/user.png");
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
 .btn {
+  display: inline-flex;
   align-items: center;
   text-align: center;
   justify-content: center;
@@ -309,7 +352,6 @@ i {
 }
 
 .btn-black {
-  max-width: 90px;
   padding-right: 35px;
   padding-left: 35px;
   background-color: #000000;
@@ -346,7 +388,6 @@ i {
 .btn-big.btn-black {
   padding-right: 42px;
   padding-left: 39px;
-  max-width: 250px;
 }
 
 .content-main {
@@ -440,6 +481,11 @@ i {
   display: none;
 }
 
+.header .tel-link,
+.header .user-link {
+  display: none;
+}
+
 .main-menu {
   padding-top: 10px;
   padding-bottom: 10px;
@@ -450,19 +496,19 @@ i {
   margin-right: 36px;
 }
 
+.contact__item .icon_water {
+  font-size: 30px;
+}
+
+.contact__item .icon_stanok {
+  font-size: 40px;
+}
+
 .contact__item .wrap-icon {
   height: 40px;
   align-items: center;
   justify-content: flex-start;
   margin-right: 10px;
-}
-
-.contact__item .wrap-icon .icon_water {
-  font-size: 30px;
-}
-
-.contact__item .wrap-icon .icon_stanok {
-  font-size: 40px;
 }
 
 .contact__item h4 {
@@ -483,6 +529,7 @@ i {
   font-family: "MontserratMedium";
   font-size: 11px;
   line-height: 13px;
+  flex-wrap: wrap;
 }
 
 .nav-main li {
@@ -518,6 +565,7 @@ i {
 
 .header__main-item {
   justify-content: space-between;
+  align-items: center;
 }
 
 .header-nav {
@@ -594,11 +642,17 @@ i {
   padding: 60px  28px 68px 67px;
   margin-top: -130px;
   margin-bottom: 30px;
+  position: relative;
+}
+
+.product-slider .current_slider {
+  position: absolute;
+  left: 150px;
+  bottom: 53px;
 }
 
 .product-slider__item {
   justify-content: space-around;
-  position: relative;
 }
 
 .product-slider__item .advantage {
@@ -825,6 +879,17 @@ i {
 
 .product-sale__item.order .purchase a {
   width: 100%;
+}
+
+.product-sale__item.notAvaliable a {
+  pointer-events: none;
+}
+
+.product-sale__item.notAvaliable h3,
+.product-sale__item.notAvaliable h2,
+.product-sale__item.notAvaliable .purchase {
+  opacity: 0.5;
+  cursor: default;
 }
 
 .product-sale__item.notAvaliable h4 {
@@ -1131,6 +1196,460 @@ i {
 
 /* Custom, iPhone Retina */
 
+.popup {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  top: 0;
+  left: 0;
+  z-index: 20;
+  opacity: 0;
+  visibility: hidden;
+  overflow-y: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
+  transition: all 0.8s ease 0s;
+}
+
+.popup__close {
+  position: absolute;
+}
+
+.popup.open {
+  opacity: 1;
+  right: 10px;
+  top: 10;
+  visibility: visible;
+}
+
+.popup.open .popup__content {
+  transform: perspective(600px) translate(0px, 0%) rotateX(0deg);
+  opacity: 1;
+}
+
+.popup__body {
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 10x;
+}
+
+.popup-registration {
+  position: relative;
+  background-color: #fff;
+  padding: 40px 30px;
+  border: 1px solid #D8D8D8;
+  flex-direction: column;
+  max-width: 517px;
+}
+
+.popup-registration h1 {
+  margin-bottom: 54px;
+}
+
+.popup-registration .form-registration .select {
+  position: relative;
+  margin-bottom: 26px;
+}
+
+.popup-registration .form-registration .select.is-active .select__body {
+  display: block;
+}
+
+.popup-registration .form-registration .select.is-active .select__icon {
+  transform: rotate(135deg);
+}
+
+.popup-registration .form-registration .select__header {
+  display: flex;
+  border-bottom: 1px solid #D8D8D8;
+  cursor: pointer;
+  padding: 10px;
+  width: 100%;
+  font-family: "MontserratLight";
+  color: #000000;
+  box-sizing: border-box;
+  font-size: 15px;
+  line-height: 22px;
+  opacity: 0.8;
+}
+
+.popup-registration .form-registration .select__icon {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  justify-content: center;
+  width: 8px;
+  height: 8px;
+  border-right: 1px solid #4C4C4C;
+  border-bottom: 1px solid #4C4C4C;
+  transition: .4s ease-out;
+  transition-delay: 0.2s;
+  transform: rotate(45deg);
+}
+
+.popup-registration .form-registration .select__body {
+  border: 1px solid #D8D8D8;
+  display: none;
+  left: 0;
+  right: 0;
+  top: 100%;
+  position: absolute;
+  z-index: 30;
+  background-color: #FFFFFF;
+}
+
+.popup-registration .form-registration .select__item {
+  font-family: "MontserratLight";
+  line-height: 22px;
+  padding: 16px 10px;
+  font-size: 15px;
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.popup-registration .form-registration .select__item:nth-child(2n) {
+  background-color: #F9F9F9;
+}
+
+.popup-registration .form-registration .select__item:hover {
+  background-color: #f2f2f2;
+}
+
+.popup-registration .form-registration__item {
+  margin-bottom: 26px;
+  color: #000000;
+}
+
+.popup-registration .form-registration__item input {
+  font-family: "MontserratLight";
+  color: #000000;
+  box-sizing: border-box;
+  padding: 10px;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #D8D8D8;
+}
+
+.popup-registration .form-registration__item input::-webkit-input-placeholder {
+  color: #000000;
+  font-family: "MontserratLight";
+}
+
+.popup-registration .form-registration__item input::-moz-placeholder {
+  color: #000000;
+  font-family: "MontserratLight";
+}
+
+.popup-registration .form-registration__item input:-ms-input-placeholder {
+  color: #000000;
+  font-family: "MontserratLight";
+}
+
+.popup-registration .form-registration__item input:-moz-placeholder {
+  color: #000000;
+  font-family: "MontserratLight";
+}
+
+.popup-registration .form-registration__item input:focus {
+  border-bottom-color: #41C59F;
+}
+
+.popup-registration .form-registration__item input:focus::-webkit-input-placeholder {
+  color: transparent;
+}
+
+.popup-registration .form-registration__item input:focus:-moz-placeholder {
+  color: transparent;
+}
+
+.popup-registration .form-registration__item input:focus::-moz-placeholder {
+  color: transparent;
+}
+
+.popup-registration .form-registration__item input:focus:focus:-ms-input-placeholder {
+  color: transparent;
+}
+
+.popup-registration .form-registration .consent {
+  padding: 0 10px;
+}
+
+.popup-registration .form-registration .consent p {
+  padding-left: 40px;
+  margin-bottom: 40px;
+}
+
+.popup-registration .form-registration .consent .link {
+  font-family: "MontserratSemiBold";
+  font-size: 15px;
+  line-height: 22px;
+  color: #41C59F;
+  opacity: 0.8;
+}
+
+.popup-registration .form-registration .consent .check {
+  display: inline-block;
+  position: relative;
+  padding-left: 1.2em;
+  margin-bottom: 10px;
+}
+
+.popup-registration .form-registration .consent .check__input {
+  position: absolute;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.popup-registration .form-registration .consent .check__input:checked + .check__box {
+  background-color: #41C59F;
+  border-color: #41C59F;
+}
+
+.popup-registration .form-registration .consent .check__input:checked + .check__box:after {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  top: 8%;
+  left: 37%;
+  width: 4px;
+  height: 9px;
+  border-right: 1px solid #FFFFFF;
+  border-bottom: 1px solid #FFFFFF;
+  transform: rotate(45deg);
+}
+
+.popup-registration .form-registration .consent .check__box {
+  cursor: pointer;
+  margin-left: -1.2em;
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #D8D8D8;
+}
+
+.popup-registration .form-registration .consent .check__text {
+  display: inline-block;
+  margin-left: 20px;
+  font-size: 15px;
+  line-height: 22px;
+  font-family: "MontserratLight";
+}
+
+.drop-down {
+  background-color: #FFFFFF;
+  display: none;
+  transition: all 0.8s ease 0s;
+  position: absolute;
+  z-index: 12;
+  top: 149px;
+  right: 20%;
+}
+
+.drop-down.drop_active {
+  display: block;
+}
+
+.drop-down__body {
+  border: 1px solid #D8D8D8;
+  max-width: 893px;
+  box-sizing: border-box;
+  height: auto;
+  padding: 35px 30px;
+}
+
+.drop-down__content {
+  justify-content: space-between;
+}
+
+.drop-down__nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.drop-down__nav li:before {
+  margin-right: 20px;
+  margin-bottom: 2px;
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #41C59F;
+}
+
+.drop-down__nav li:not(:last-child) {
+  margin-bottom: 30px;
+}
+
+.drop-down__nav li a {
+  font-family: "MontserratSemiBold";
+  font-size: 14px;
+  line-height: 20px;
+  color: #000000;
+}
+
+.drop-down__nav li a:hover {
+  color: #41C59F;
+}
+
+.drop-down__description {
+  justify-content: space-between;
+}
+
+.drop-down__description .image {
+  margin-right: 49px;
+  flex-shrink: 0;
+}
+
+.drop-down__description .content-main {
+  max-width: 240px;
+}
+
+.drop-down__description a:hover {
+  opacity: 0.7;
+}
+
+.accordeon-wrapper {
+  position: absolute;
+  visibility: hidden;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  transform: scale(0);
+  transition: all 0.8s ease 0s;
+}
+
+.accordeon-wrapper.active_nav {
+  position: relative;
+  z-index: 100;
+  visibility: visible;
+  overflow-y: visible;
+  overflow-y: auto;
+  overflow-x: visible;
+  transform: scale(1);
+  transition: all 0.8s ease 0s;
+}
+
+.accordeon {
+  width: 100%;
+  background-color: #FFFFFF;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.accordeon__item {
+  display: block;
+  border-bottom: 1px solid #D8D8D8;
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+  font-family: "MontserratSemiBold";
+  letter-spacing: 1px;
+  line-height: 26px;
+  overflow: hidden;
+}
+
+.accordeon__item-link {
+  text-transform: uppercase;
+  display: block;
+  padding: 30px 86px;
+  position: relative;
+  overflow: hidden;
+  transition: .4s ease-out;
+  transition-delay: 0.5s;
+}
+
+.accordeon__item-link:after {
+  content: '';
+  position: absolute;
+  right: 86px;
+  width: 10px;
+  height: 10px;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+  transition: .4s ease-out;
+  transition-delay: 0.2s;
+  transform: rotate(45deg);
+}
+
+.accordeon__submenu {
+  background-color: #FFFFFF;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.5s;
+}
+
+.accordeon__submenu:target {
+  max-height: 1000rem;
+}
+
+.accordeon__submenu-link {
+  padding: 15px 86px;
+  display: block;
+  color: #000000;
+  font-family: "MontserratSemiBold";
+  font-size: 14px;
+  line-height: 20px;
+  transition: 0.2s ease-in;
+}
+
+.accordeon__submenu-link:before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  margin-right: 20px;
+  margin-bottom: 2px;
+  display: inline-block;
+  border-radius: 50%;
+  background-color: #41C59F;
+}
+
+.accordeon__submenu-link:hover {
+  color: #41C59F;
+}
+
+.accordeon__active {
+  color: #41C59F;
+}
+
+.accordeon__active:after {
+  transform: rotate(135deg);
+}
+
+.navigation {
+  width: 100%;
+  background-color: #FFFFFF;
+  margin: 0;
+  padding: 0;
+}
+
+.navigation__item {
+  display: block;
+  border-bottom: 1px solid #D8D8D8;
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+  font-family: "MontserratSemiBold";
+  letter-spacing: 1px;
+  line-height: 26px;
+  overflow: hidden;
+}
+
+.navigation__item-link {
+  display: block;
+  padding: 30px 86px;
+  position: relative;
+  overflow: hidden;
+  transition: .4s ease-out;
+  transition-delay: 0.5s;
+}
+
 @media only screen and (max-width: 1172px) {
   .main-menu {
     position: relative;
@@ -1195,6 +1714,7 @@ i {
 
   .contact {
     width: 59%;
+    justify-content: space-between;
   }
 
   .nav-menu {
@@ -1224,6 +1744,20 @@ i {
     height: 20px;
   }
 
+  .header__burger.active_nav:before {
+    transform: rotate(45deg);
+    top: 9px;
+  }
+
+  .header__burger.active_nav:after {
+    transform: rotate(-45deg);
+    bottom: 9px;
+  }
+
+  .header__burger.active_nav span {
+    transform: scale(0);
+  }
+
   .header__burger span {
     background-color: black;
     position: absolute;
@@ -1231,6 +1765,7 @@ i {
     width: 100%;
     height: 2px;
     top: 9px;
+    transition: all 0.3s ease 0s;
   }
 
   .header__burger:before,
@@ -1241,6 +1776,7 @@ i {
     width: 100%;
     height: 2px;
     left: 0;
+    transition: all 0.3s ease 0s;
   }
 
   .header__burger:before {
@@ -1329,6 +1865,7 @@ i {
   .footer .footer-wrapper {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
   }
 
   .footer .footer-wrapper .footer-main__wrap {
@@ -1381,15 +1918,41 @@ i {
 }
 
 @media only screen and (max-width: 768px) {
+  .product-slider .current_slider {
+    left: auto;
+    right: 24px;
+  }
+
+  .product-sale__wrap .slick-arrow {
+    top: 46%;
+  }
+
+  .product-sale__wrap .slick-arrow.slick-prev {
+    left: 27px;
+    right: auto;
+  }
+
+  .product-sale__wrap .slick-arrow.slick-next {
+    right: 27px;
+  }
+
   .cooperation {
     padding-top: 60px;
     padding-bottom: 60px;
+  }
+
+  .cooperation__wrap .cooperation__item:last-child {
+    justify-content: space-between;
   }
 
   .fact-advantage {
     width: 46%;
     height: 185px;
     padding: 5px 5px 0px 0px;
+  }
+
+  .fact-advantage p {
+    font-size: 13px;
   }
 
   .cooperation .content-main {
@@ -1411,28 +1974,125 @@ i {
     width: auto;
     margin-left: 0;
   }
+
+  .btn-big {
+    font-size: 11px;
+  }
+}
+
+@media only screen and (max-width: 666px) {
+  .header .contact__item .wrap-icon {
+    display: none;
+  }
+
+  .header .nav-menu .nav-main li {
+    margin-left: 2px;
+  }
 }
 
 @media only screen and (max-width: 576px) {
+  .header .tel-link,
+  .header .user-link {
+    display: block;
+  }
+
+  .header__top {
+    display: none;
+  }
+
+  .header__burger {
+    width: 26px;
+  }
+
+  .header__logo {
+    height: 33px;
+  }
+
+  .header .cart {
+    position: relative;
+  }
+
+  .header .cart i {
+    font-size: 20px;
+  }
+
+  .header .cart span {
+    width: 16px;
+    height: 16px;
+    font-size: 12px;
+    position: absolute;
+    top: -6px;
+    left: 12px;
+  }
+
+  .contact .icon_water {
+    font-size: 24px;
+  }
+
+  .contact .icon_stanok {
+    font-size: 32px;
+  }
+
+  .product-slider__item:not(:last-child) {
+    display: none;
+  }
+
   .product-baner {
     position: relative;
     justify-content: center;
     flex-wrap: wrap;
   }
 
+  .product-baner .image {
+    width: 100%;
+    text-align: center;
+  }
+
   .product-baner__item {
+    padding: 20px 15px 15px 16px;
     width: 100%;
     margin-right: 0;
     margin-left: 0;
+  }
+
+  .product-baner__item:first-child .product-baner__content {
+    flex-direction: column;
+  }
+
+  .product-baner__item:nth-child(2) {
+    flex-direction: column;
+  }
+
+  .product-baner__item:nth-child(2) .image {
+    order: 1;
+  }
+
+  .product-baner__item h1 {
+    margin-bottom: 10px;
   }
 
   .product-baner__item:not(:last-child) {
     margin-bottom: 20px;
   }
 
+  .product-baner__content .description p {
+    display: none;
+  }
+
+  .product-baner__content .description a {
+    margin-bottom: 10px;
+  }
+
   .product-slider {
     margin-right: -15px;
     margin-left: -15px;
+    padding-bottom: 35px;
+    padding-top: 30px;
+    margin-bottom: 20px;
+  }
+
+  .product-slider .current_slider {
+    display: none;
   }
 
   .product-slider__item {
@@ -1440,17 +2100,16 @@ i {
     align-items: center;
   }
 
-  .product-slider__item:not(:first-child) {
-    display: none;
-  }
-
   .product-slider__item .advantage {
     width: 100%;
     text-align: center;
+    position: relative;
   }
 
   .product-slider__item .advantage h1 {
+    position: absolute;
     font-weight: 600;
+    margin-bottom: 0;
   }
 
   .product-slider__item .advantage h5,
@@ -1461,6 +2120,10 @@ i {
 
   .product-slider__item .description {
     display: none;
+  }
+
+  .product-sale .title {
+    margin-bottom: 20px;
   }
 
   .print-clothes {
@@ -1518,12 +2181,60 @@ i {
     padding-bottom: 20px;
   }
 
+  .footer-main__item.footer-logo {
+    max-width: 100%;
+  }
+
+  .footer-main__social {
+    width: 100%;
+  }
+
+  .footer-main__social .social-networks__link a i {
+    font-size: 20px;
+  }
+
+  .footer-main__social .social-networks__link a:not(:last-child) {
+    margin-right: 20px;
+  }
+
+  .footer-main .payment-systems {
+    width: auto;
+    flex-direction: row;
+  }
+
+  .footer-main .payment-systems__item:first-child {
+    margin-bottom: 0px;
+    margin-right: 5px;
+  }
+
+  .social-networks {
+    margin-right: 10px;
+  }
+
+  .social-networks__title {
+    display: none;
+  }
+
   .footer .content h4 {
-    font-size: 10px;
+    font-size: 8px;
   }
 
   .footer .content h6 {
-    font-size: 12px;
+    font-size: 10px;
+  }
+
+  .footer .footer-wrapper .footer-main__wrap {
+    width: 100%;
+  }
+
+  .footer .footer-logo {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .footer .footer-logo .logo {
+    flex-shrink: 0;
+    margin-right: 20px;
   }
 
   .footer .main-menu {
@@ -1563,10 +2274,17 @@ i {
   .content-main {
     text-align: left;
     max-width: 100%;
+    padding: 0;
   }
 
   .content-main .btn-black {
     max-width: 100%;
+  }
+
+  .content-main h5,
+  .content-main h1,
+  .content-main p {
+    margin-bottom: 20px;
   }
 
   h1 {
@@ -1595,6 +2313,14 @@ i {
     line-height: 20px;
   }
 }
+
+@media only screen and (max-width: 390px) {
+  .content-main .btn-black {
+    width: 100%;
+  }
+}
+
+.webp .icon-user { background-image: url(../img/user.webp); }
 
 .webp .print-clothes:before { background-image: url(../img/human.webp); }
 

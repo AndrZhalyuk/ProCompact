@@ -4,10 +4,18 @@
     padding: 60px  28px 68px 67px;    
     margin-top: -130px;
     margin-bottom: 30px;
+    position: relative;   
+
+    .current_slider{
+        position: absolute;
+        left: 150px;
+        bottom: 53px;
+    } 
+    
     &__item{
         @extend %d-flex;
-        justify-content: space-around;
-        position: relative;
+        justify-content: space-around;   
+         
         .advantage{
             width: 30%;
             h5{
@@ -21,7 +29,8 @@
             p{
                 margin-bottom: 65px;
                
-            }            
+            }
+                  
         }
         .image{          
             @extend %d-flex;            
@@ -253,35 +262,91 @@
   }
   /* Small Devices, Tablets */
   @media only screen and (max-width: 768px) {
+      .product-slider{
+        .current_slider{
+            left: auto;
+            right: 24px;
+        }
+         
+      }
 
   }
   /* Extra Small Devices, Phones */
   @media only screen and (max-width: 576px) {
+      .product-slider{
+          &__item{
+
+              &:not(:last-child){
+                display: none;
+              }
+          }
+      }
     .product-baner{
         position: relative;
         justify-content: center;
         flex-wrap: wrap;
+
+        .image{
+            width: 100%;
+            text-align: center;
+        }
         &__item{
+            padding: 20px 15px 15px 16px;
+            &:first-child{
+                .product-baner__content{
+                    flex-direction: column;
+                }
+            }
+            &:nth-child(2){
+                flex-direction: column;
+                .image{
+                    order: 1;
+                }
+            }           
             width: 100%;
             margin-right: 0;
             margin-left: 0;
+
+            h1{
+                margin-bottom: 10px;
+            }
+
             &:not(:last-child){
                 margin-bottom: 20px;
+            }
+        }
+        &__content{
+           
+            .description{                
+                p{
+                    display: none;
+                }
+                a{
+                    margin-bottom: 10px;
+                }
             }
         }
     }
     .product-slider{
         margin-right: -15px;
         margin-left: -15px;
-        &__item{
-            &:not(:first-child){
-                display: none;
-            }
+        padding-bottom: 35px;
+        padding-top: 30px;
+        margin-bottom: 20px;
+        .current_slider{
+            display: none;
+        }
+        &__item{                  
+             
+               
             .advantage{
                 width: 100%;
                 text-align: center;
+                position: relative;
                 h1{
+                    position: absolute;
                     font-weight: 600;
+                    margin-bottom: 0;
                 }
                 
                 h5, p, a{

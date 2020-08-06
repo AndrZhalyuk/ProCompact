@@ -1,6 +1,10 @@
 @@include('slick.min.js');
+@@include('burger.js')
+@@include('navmenu.js');
 @@include('slider.js');
 @@include('popap.js');
+@@include('accordeon.js');
+
 function testWebP(callback) {
 
     var webP = new Image();

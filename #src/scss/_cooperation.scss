@@ -6,8 +6,7 @@
         @extend %d-flex;
     }
     &__item{
-        width: 50%;
-        
+        width: 50%;        
         &:last-child{
             @extend %d-flex;
             flex-wrap: wrap;
@@ -50,11 +49,22 @@
     .cooperation{
         padding-top: 60px;
         padding-bottom: 60px;
+        &__wrap{
+            .cooperation__item{
+                &:last-child {
+                    justify-content: space-between;
+                 }        
+            }
+        }
+       
     }
     .fact-advantage {
         width: 46%;
         height: 185px;
         padding: 5px 5px 0px 0px;
+        p{
+            font-size: 13px;
+        }
     }
     .cooperation{
         .content-main{
@@ -73,7 +83,7 @@
             justify-content: center;           
         }
         &__item{
-            width: 100%;
+            width: 100%;           
             .content-main{
                 margin-bottom: 67px;
             }
