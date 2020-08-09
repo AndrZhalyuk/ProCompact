@@ -9,7 +9,7 @@
 
     &.active_nav{
         position: relative;
-        z-index: 100;
+        z-index: 19;
         visibility: visible;
         overflow-y: visible;
         overflow-y: auto;
@@ -47,7 +47,7 @@
         &:after{
             content: '';
             position: absolute;
-            right: 86px;
+            right: 10%;
             width: 10px;
             height: 10px;
             border-right: 1px solid black;
@@ -60,8 +60,9 @@
     }
     &__submenu{
         background-color: $colorBgc_white;
-        overflow: hidden;
-        max-height: 0;
+        display: none;
+        // overflow: hidden;
+        // max-height: 0;
         transition: max-height 0.5s;
         &:target{
             max-height: 1000rem;
@@ -119,5 +120,19 @@
         overflow: hidden; 
         transition: .4s ease-out;
         transition-delay: 0.5s;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .accordeon{
+        &__item-link{
+            padding: 20px 30px;
+        }
+    }
+    .navigation__item-link {
+        padding: 20px 30px;        
+    }
+    .accordeon__submenu-link {
+        padding: 10px 40px;
     }
 }

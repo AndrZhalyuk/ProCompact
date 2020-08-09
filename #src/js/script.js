@@ -2,7 +2,7 @@
 @@include('burger.js')
 @@include('navmenu.js');
 @@include('slider.js');
-@@include('popap.js');
+@@include('popup.js');
 @@include('accordeon.js');
 
 function testWebP(callback) {

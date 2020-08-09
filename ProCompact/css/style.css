@@ -1036,6 +1036,10 @@ i {
   padding-bottom: 100px;
 }
 
+.print-clothes .content-main {
+  width: 50%;
+}
+
 .print-clothes:before {
   content: '';
   position: absolute;
@@ -1526,7 +1530,7 @@ i {
 
 .accordeon-wrapper.active_nav {
   position: relative;
-  z-index: 100;
+  z-index: 19;
   visibility: visible;
   overflow-y: visible;
   overflow-y: auto;
@@ -1568,7 +1572,7 @@ i {
 .accordeon__item-link:after {
   content: '';
   position: absolute;
-  right: 86px;
+  right: 10%;
   width: 10px;
   height: 10px;
   border-right: 1px solid black;
@@ -1580,8 +1584,7 @@ i {
 
 .accordeon__submenu {
   background-color: #FFFFFF;
-  overflow: hidden;
-  max-height: 0;
+  display: none;
   transition: max-height 0.5s;
 }
 
@@ -2133,6 +2136,10 @@ i {
     height: 670px;
   }
 
+  .print-clothes .content-main {
+    width: auto;
+  }
+
   .print-clothes:before {
     position: static;
   }
@@ -2264,6 +2271,18 @@ i {
   .footer .main-menu .web-systems {
     justify-content: center;
     margin: 0 auto;
+  }
+
+  .accordeon__item-link {
+    padding: 20px 30px;
+  }
+
+  .navigation__item-link {
+    padding: 20px 30px;
+  }
+
+  .accordeon__submenu-link {
+    padding: 10px 40px;
   }
 
   .container {
